@@ -11,6 +11,10 @@ import br.com.datacrunch.entidade.Usuario;
 
 public class UsuarioDAO {
 
+	private static final Connection con = null;
+
+
+
 	// Metodo cadastrar
 	public void cadastrar(Usuario usu) {
 		// TODO Auto-generated method stub
@@ -168,11 +172,22 @@ public class UsuarioDAO {
 				
 			preparador.setString(1, usuConsulta.getLogin());
 			preparador.setString(2, usuConsulta.getSenha());
-			preparador.executeQuery();
+			ResultSet resultado = preparador.executeQuery();
+			
+			Usuario usuario = new Usuario();
+			
+			usuario.setId(resultado.getInt("id"));
+			usuario.setNome(resultado.getString("nome"));
+			usuario.setLogin(resultado.getString("login"));
+			usuario.setSenha(resultado.getString("senha"));
+			
+			
+			return usuario;
 		}
 			 catch (SQLException e){
 				
 				e.printStackTrace();
 			}
+			return usuConsulta;
 		}
 }
