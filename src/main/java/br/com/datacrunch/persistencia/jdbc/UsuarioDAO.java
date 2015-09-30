@@ -11,7 +11,6 @@ import br.com.datacrunch.entidade.Usuario;
 
 public class UsuarioDAO {
 
-	private static final Connection con = null;
 
 
 
@@ -160,19 +159,29 @@ public class UsuarioDAO {
 			return lista;
 		}
 		
-		
+		/**
+		 * 
+		 * @param usuConsulta
+		 * @return
+		 */
 		
 		public Usuario autenticar(Usuario usuConsulta){
 			
-			String sql = "select * from usuario login =? and senha?";
+			Connection con = ConexaoFactory.getConnection();
+
+			
+			String sql = "select * from usuario login =? and senha =?";
 			
 			try{
 			
-				PreparedStatement preparador = con.prepareStatement(sql);		
-				
+					
+			PreparedStatement preparador = con.prepareStatement(sql);		
+					
 			preparador.setString(1, usuConsulta.getLogin());
 			preparador.setString(2, usuConsulta.getSenha());
 			ResultSet resultado = preparador.executeQuery();
+			
+			if(resultado.next()){
 			
 			Usuario usuario = new Usuario();
 			
@@ -183,11 +192,16 @@ public class UsuarioDAO {
 			
 			
 			return usuario;
+			
+			}else {
+				
+				return null;
+			}
 		}
 			 catch (SQLException e){
 				
 				e.printStackTrace();
 			}
-			return usuConsulta;
+			return null;
 		}
 }

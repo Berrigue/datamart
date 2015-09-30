@@ -16,7 +16,26 @@ public class TestUsuarioDAO {
 		// testeAlterar();
 		// testeCadastrar();
 		//testeBuscarPorID();
-		testeBuscarTodos();
+		//testeBuscarTodos();
+		 
+		 testeAutenticar();
+		 
+	}
+
+	private static void testeAutenticar() {
+		// TODO Auto-generated method stub
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		
+		
+		Usuario usu = new Usuario();
+		usu.setLogin("eduardo");
+		usu.setSenha("123");
+		
+		Usuario usuRetorno = usuarioDAO.autenticar(usu);
+		
+		System.out.println(usuRetorno);
+		
 	}
 
 	private static void testeBuscarTodos() {
