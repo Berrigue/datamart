@@ -11,9 +11,6 @@ import br.com.datacrunch.entidade.Usuario;
 
 public class UsuarioDAO {
 
-
-
-
 	// Metodo cadastrar
 	public void cadastrar(Usuario usu) {
 		// TODO Auto-generated method stub
@@ -83,125 +80,120 @@ public class UsuarioDAO {
 		}
 	}
 
-	
-/**
- * Busca de um registro no banco de dados pelo numero do ID do usario
- * @param id é um inteiro que representa o numero do ID do usuario a ser buscado
- * @return Um objeto usuario quando encontra ou null quando não encotra.
- */
-		public Usuario buscarPorID(Integer id) {
-			// TODO Auto-generated method stub
-			Connection con = ConexaoFactory.getConnection();
-			String sql = "select * from usuario where id=?";
+	/**
+	 * Busca de um registro no banco de dados pelo numero do ID do usario
+	 * 
+	 * @param id
+	 *            é um inteiro que representa o numero do ID do usuario a ser
+	 *            buscado
+	 * @return Um objeto usuario quando encontra ou null quando não encotra.
+	 */
+	public Usuario buscarPorID(Integer id) {
+		// TODO Auto-generated method stub
+		Connection con = ConexaoFactory.getConnection();
+		String sql = "select * from usuario where id=?";
 
-			try {
-				PreparedStatement preparador = con.prepareStatement(sql);
-				preparador.setInt(1, id);
+		try {
+			PreparedStatement preparador = con.prepareStatement(sql);
+			preparador.setInt(1, id);
 
-				ResultSet resultado = preparador.executeQuery();
-				//posicionando o curso do primeiro registro
-				if (resultado.next()){
-					
-					Usuario usuario = new Usuario();
-					usuario.setId(resultado.getInt("id"));
-					usuario.setNome(resultado.getString("nome"));
-					usuario.setLogin(resultado.getString("login"));
-					usuario.setLogin(resultado.getString("senha"));
+			ResultSet resultado = preparador.executeQuery();
+			// posicionando o curso do primeiro registro
+			if (resultado.next()) {
 
-					
-					return usuario;
-					
-				}
-				
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Usuario usuario = new Usuario();
+				usuario.setId(resultado.getInt("id"));
+				usuario.setNome(resultado.getString("nome"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setLogin(resultado.getString("senha"));
+
+				return usuario;
+
 			}
-			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		/**
-		 * Realiza a busca de varios registros da tabela de usuarios
-		 * @return retornar lista de objetos Usuario contendo 0 elementos quando não tiver registros
-		 * ou n elementos quando não tiver registros.
-		 */
-		public List<Usuario> buscarTodos() {
-			// TODO Auto-generated method stub
-			Connection con = ConexaoFactory.getConnection();
-			String sql = "select * from usuario";
-			
-			List<Usuario> lista = new ArrayList<Usuario>();
+		return null;
+	}
 
-			try {
-				PreparedStatement preparador = con.prepareStatement(sql);
+	/**
+	 * Realiza a busca de varios registros da tabela de usuarios
+	 * 
+	 * @return retornar lista de objetos Usuario contendo 0 elementos quando não
+	 *         tiver registros ou n elementos quando não tiver registros.
+	 */
+	public List<Usuario> buscarTodos() {
+		// TODO Auto-generated method stub
+		Connection con = ConexaoFactory.getConnection();
+		String sql = "select * from usuario";
 
-				ResultSet resultado = preparador.executeQuery();
-				//posicionando o curso do primeiro registro
-				while (resultado.next()){
-					
-					Usuario usuario = new Usuario();
-					usuario.setId(resultado.getInt("id"));
-					usuario.setNome(resultado.getString("nome"));
-					usuario.setLogin(resultado.getString("login"));
-					usuario.setLogin(resultado.getString("senha"));
-					
-					lista.add(usuario);
-					
-					
-				}
-				
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		List<Usuario> lista = new ArrayList<Usuario>();
+
+		try {
+			PreparedStatement preparador = con.prepareStatement(sql);
+
+			ResultSet resultado = preparador.executeQuery();
+			// posicionando o curso do primeiro registro
+			while (resultado.next()) {
+
+				Usuario usuario = new Usuario();
+				usuario.setId(resultado.getInt("id"));
+				usuario.setNome(resultado.getString("nome"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setLogin(resultado.getString("senha"));
+
+				lista.add(usuario);
+
 			}
-			return lista;
-		}
-		
-		/**
-		 * 
-		 * @param usuConsulta
-		 * @return
-		 */
-		
-		public Usuario autenticar(Usuario usuConsulta){
-			
-			Connection con = ConexaoFactory.getConnection();
 
-			
-			String sql = "select * from usuario login =? and senha =?";
-			
-			try{
-			
-					
-			PreparedStatement preparador = con.prepareStatement(sql);		
-					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+
+	/**
+	 * 
+	 * @param usuConsulta
+	 * @return
+	 */
+
+	public Usuario autenticar(Usuario usuConsulta) {
+
+		Connection con = ConexaoFactory.getConnection();
+
+		String sql = "select * from usuario where login=? and senha=?";
+
+		try {
+
+			PreparedStatement preparador = con.prepareStatement(sql);
+
 			preparador.setString(1, usuConsulta.getLogin());
 			preparador.setString(2, usuConsulta.getSenha());
 			ResultSet resultado = preparador.executeQuery();
-			
-			if(resultado.next()){
-			
-			Usuario usuario = new Usuario();
-			
-			usuario.setId(resultado.getInt("id"));
-			usuario.setNome(resultado.getString("nome"));
-			usuario.setLogin(resultado.getString("login"));
-			usuario.setSenha(resultado.getString("senha"));
-			
-			
-			return usuario;
-			
-			}else {
-				
+
+			if (resultado.next()) {
+
+				Usuario usuario = new Usuario();
+
+				usuario.setId(resultado.getInt("id"));
+				usuario.setNome(resultado.getString("nome"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setSenha(resultado.getString("senha"));
+
+				return usuario;
+
+			} else {
+
 				return null;
 			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		}
-			 catch (SQLException e){
-				
-				e.printStackTrace();
-			}
-			return null;
-		}
+		return null;
+	}
 }

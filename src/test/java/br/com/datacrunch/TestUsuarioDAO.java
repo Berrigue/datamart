@@ -1,6 +1,5 @@
 package br.com.datacrunch;
 
-
 import java.util.List;
 
 import br.com.datacrunch.entidade.Usuario;
@@ -10,41 +9,40 @@ public class TestUsuarioDAO {
 
 	public static void main(String[] args) {
 		// chamada
-		//System.out.println("Nenhuma interação com o banco foi realizada");
-		 System.out.println("Buscando conexao...");
+		// System.out.println("Nenhuma interação com o banco foi realizada");
+		System.out.println("Buscando conexao...");
 		// testeExcluir();
 		// testeAlterar();
 		// testeCadastrar();
-		//testeBuscarPorID();
-		//testeBuscarTodos();
-		 
-		 testeAutenticar();
-		 
+		// testeBuscarPorID();
+		// testeBuscarTodos();
+
+		testeAutenticar();
+
 	}
 
 	private static void testeAutenticar() {
 		// TODO Auto-generated method stub
-		
+
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		
-		
+
 		Usuario usu = new Usuario();
 		usu.setLogin("eduardo");
 		usu.setSenha("123");
-		
+
 		Usuario usuRetorno = usuarioDAO.autenticar(usu);
-		
+
 		System.out.println(usuRetorno);
-		
+
 	}
 
 	private static void testeBuscarTodos() {
 		// TODO Auto-generated method stub
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		List<Usuario> lista = usuarioDAO.buscarTodos();
-		for (Usuario u: lista){
+		for (Usuario u : lista) {
 			System.out.println(u);
-			
+
 		}
 	}
 
@@ -52,7 +50,7 @@ public class TestUsuarioDAO {
 		// TODO Auto-generated method stub
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = usuarioDAO.buscarPorID(4);
-		
+
 		System.out.println(usuario);
 	}
 
@@ -99,9 +97,7 @@ public class TestUsuarioDAO {
 		usuDAO.excluir(usu);
 
 		System.out.println("Excluido com sucesso!");
-		
 
 	}
-	
-	
+
 }
