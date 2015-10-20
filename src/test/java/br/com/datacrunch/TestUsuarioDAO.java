@@ -13,11 +13,11 @@ public class TestUsuarioDAO {
 		System.out.println("Buscando conexao...");
 		// testeExcluir();
 		// testeAlterar();
-		// testeCadastrar();
+		 testeSalvar();
 		// testeBuscarPorID();
 		// testeBuscarTodos();
 
-		testeAutenticar();
+		//testeAutenticar();
 
 	}
 
@@ -54,16 +54,16 @@ public class TestUsuarioDAO {
 		System.out.println(usuario);
 	}
 
-	public static void testeCadastrar() {
+	public static void testeSalvar() {
 		Usuario usu = new Usuario();
-		usu.setNome("Fulano");
-		usu.setLogin("fulano");
-		usu.setSenha("123");
+		usu.setNome("Geronimo");
+		usu.setLogin("Geron");
+		usu.setSenha("12356");
 
 		// cadastrando usuario no banco dados
 		UsuarioDAO usuDAO = new UsuarioDAO();
 
-		usuDAO.cadastrar(usu);
+		usuDAO.salvar(usu);
 
 		System.out.println("Cadastrado com sucesso!");
 

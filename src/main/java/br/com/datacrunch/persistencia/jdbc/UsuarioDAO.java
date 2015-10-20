@@ -12,7 +12,7 @@ import br.com.datacrunch.entidade.Usuario;
 public class UsuarioDAO {
 
 	// Metodo cadastrar
-	public void cadastrar(Usuario usu) {
+	public void salvar(Usuario usu) {
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
 		String sql = "insert into usuario (nome, login, senha) values (?,?,?)";
