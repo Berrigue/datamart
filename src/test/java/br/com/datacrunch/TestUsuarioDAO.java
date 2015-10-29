@@ -13,11 +13,11 @@ public class TestUsuarioDAO {
 		System.out.println("Buscando conexao...");
 		// testeExcluir();
 		// testeAlterar();
-		 testeSalvar();
+		// testeCadastrar();
 		// testeBuscarPorID();
 		// testeBuscarTodos();
 
-		//testeAutenticar();
+		testeAutenticar();
 
 	}
 

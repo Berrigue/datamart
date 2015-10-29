@@ -12,7 +12,8 @@ import br.com.datacrunch.entidade.Usuario;
 public class UsuarioDAO {
 
 	// Metodo cadastrar
-	public void salvar(Usuario usu) {
+	public void cadastrar(Usuario usu) {
+		
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
 		String sql = "insert into usuario (nome, login, senha) values (?,?,?)";
@@ -32,7 +33,7 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// Metodo alterar
 	public void alterar(Usuario usu) {
 		// TODO Auto-generated method stub
@@ -127,7 +128,7 @@ public class UsuarioDAO {
 	public List<Usuario> buscarTodos() {
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
-		String sql = "select * from usuario";
+		String sql = "select * from usuario order by id";
 
 		List<Usuario> lista = new ArrayList<Usuario>();
 
@@ -195,5 +196,18 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void salvar(Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+		if (usuario.getId() !=null && usuario.getId() !=0){
+			
+			alterar(usuario);
+		}else{
+			
+			salvar(usuario);
+		}
+		
 	}
 }
