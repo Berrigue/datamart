@@ -12,7 +12,7 @@ import br.com.datacrunch.entidade.Usuario;
 public class UsuarioDAO {
 
 	// Metodo cadastrar
-	public void cadastrar(Usuario usu) {
+	public void cadastrar(Usuario usuario) {
 		
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
@@ -20,9 +20,9 @@ public class UsuarioDAO {
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, usu.getNome());
-			preparador.setString(2, usu.getLogin());
-			preparador.setString(3, usu.getSenha());
+			preparador.setString(1, usuario.getNome());
+			preparador.setString(2, usuario.getLogin());
+			preparador.setString(3, usuario.getSenha());
 
 			// Executando o comando SQL no banco de dados
 			preparador.execute();
@@ -35,17 +35,17 @@ public class UsuarioDAO {
 	}
 	
 	// Metodo alterar
-	public void alterar(Usuario usu) {
+	public void alterar(Usuario usuario) {
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
 		String sql = "update usuario set nome=?, login=?, senha=? where id=?";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
-			preparador.setString(1, usu.getNome());
-			preparador.setString(2, usu.getLogin());
-			preparador.setString(3, usu.getSenha());
-			preparador.setInt(4, usu.getId());
+			preparador.setString(1, usuario.getNome());
+			preparador.setString(2, usuario.getLogin());
+			preparador.setString(3, usuario.getSenha());
+			preparador.setInt(4, usuario.getId());
 
 			// Executando o comando SQL no banco de dados
 			preparador.execute();
@@ -61,7 +61,7 @@ public class UsuarioDAO {
 	 * 
 	 * @param usu
 	 */
-	public void excluir(Usuario usu) {
+	public void excluir(Usuario usuario) {
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
 		String sql = "delete from  usuario  where id=?";
@@ -69,7 +69,7 @@ public class UsuarioDAO {
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 
-			preparador.setInt(1, usu.getId());
+			preparador.setInt(1, usuario.getId());
 
 			// Executando o comando SQL no banco de dados
 			preparador.execute();
@@ -206,7 +206,7 @@ public class UsuarioDAO {
 			alterar(usuario);
 		}else{
 			
-			salvar(usuario);
+			cadastrar(usuario);
 		}
 		
 	}

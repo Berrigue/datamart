@@ -108,17 +108,17 @@ public class UsuarioController extends HttpServlet {
 		String login = req.getParameter("login");
 		String senha = req.getParameter("senha");
 
-		Usuario usu = new Usuario();
+		Usuario usuario = new Usuario();
 
 		 if (id != null)
-			usu.setId(Integer.parseInt(id));	
+			 usuario.setId(Integer.parseInt(id));	
 		 
-			usu.setNome(nome);
-			usu.setLogin(login);
-			usu.setSenha(senha);
+		 usuario.setNome(nome);
+		 usuario.setLogin(login);
+		 usuario.setSenha(senha);
 			
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.salvar(usu);
+		usuarioDAO.salvar(usuario);
 
 		// falando com o servidor
 		System.out.println("Cadastro realizado com sucesso!");
@@ -128,7 +128,7 @@ public class UsuarioController extends HttpServlet {
 		//redirecionando pagina
 		
 		
-		 }
+		 } 
 		
 	
 
