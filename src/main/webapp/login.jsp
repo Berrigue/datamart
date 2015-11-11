@@ -50,7 +50,7 @@
 				</div>  
 				<!-- start: LOGIN BOX -->
 				<div class="box-login">
-					<form class="form-login" action="WEB-INF/form.jsp" method="post">
+					<form class="form-login" action="autenticador.do" method="post">
 						<fieldset>
 							<legend>
 								Faça login em sua conta
@@ -62,12 +62,12 @@
 							
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Username">
+									<input type="text" class="form-control" name="login" placeholder="Username" required="required">
 									<i class="fa fa-user"></i> </span>
 							</div>
 							<div class="form-group form-actions">
 								<span class="input-icon">
-									<input type="password" class="form-control password" name="password" placeholder="Password">
+									<input type="password" class="form-control password" name="senha" placeholder="Password" required="required">
 									<i class="fa fa-lock"></i>
 									<a class="forgot" href="#">
 										Eu esquici minha senha

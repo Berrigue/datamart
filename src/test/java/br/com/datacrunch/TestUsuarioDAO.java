@@ -10,12 +10,12 @@ public class TestUsuarioDAO {
 	public static void main(String[] args) {
 		// chamada
 		// System.out.println("Nenhuma interação com o banco foi realizada");
-		System.out.println("Buscando conexao...");
+		//System.out.println("Buscando conexao...");
 		// testeExcluir();
 		// testeAlterar();
 		// testeCadastrar();
 		// testeBuscarPorID();
-		// testeBuscarTodos();
+		 //testeBuscarTodos();
 
 		testeAutenticar();
 
@@ -26,11 +26,11 @@ public class TestUsuarioDAO {
 
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-		Usuario usu = new Usuario();
-		usu.setLogin("eduardo");
-		usu.setSenha("123");
+		Usuario usuario = new Usuario();
+		usuario.setLogin("eeee");
+		usuario.setSenha("123");
 
-		Usuario usuRetorno = usuarioDAO.autenticar(usu);
+		Usuario usuRetorno = usuarioDAO.autenticar(usuario);
 
 		System.out.println(usuRetorno);
 

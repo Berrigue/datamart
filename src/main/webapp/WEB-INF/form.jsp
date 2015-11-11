@@ -72,7 +72,7 @@
 			<p class="text-small margin-bottom-20">Favor fornecer: Nome,
 				Login e senha para que possamos liberar o seu acesso ao sistema.</p>
 
-			<form role="form" action="UsuarioController" method="post">
+			<form role="form" action="usucontroller.do" method="post">
 
 				<div class="form-group">
 					<label class="control-label"> ID </label> <input type="number"
@@ -102,7 +102,7 @@
 				</div>
 				<button type="submit" class="btn btn-o btn-primary">
 					Salvar</button>
-				<a href="UsuarioController?acao=lis"  class="btn btn-o btn-primary">Visualizar dados</a>
+				<a href="usuariocontroller?acao=lis"  class="btn btn-o btn-primary">Visualizar dados</a>
 				
 			</form>
 		</div>

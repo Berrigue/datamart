@@ -16,7 +16,7 @@ public class UsuarioDAO {
 		
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
-		String sql = "insert into usuario (nome, login, senha) values (?,?,?)";
+		String sql = "insert into usuario (nome, login, senha) values (?,?,md5(?))";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -38,7 +38,7 @@ public class UsuarioDAO {
 	public void alterar(Usuario usuario) {
 		// TODO Auto-generated method stub
 		Connection con = ConexaoFactory.getConnection();
-		String sql = "update usuario set nome=?, login=?, senha=? where id=?";
+		String sql = "update usuario set nome=?, login=?, senha=md5(?) where id=?";
 
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -166,20 +166,17 @@ public class UsuarioDAO {
 
 		Connection con = ConexaoFactory.getConnection();
 
-		String sql = "select * from usuario where login=? and senha=?";
+		String sql = "select * from usuario where login=? and senha=md5(?)";
 
-		try {
-
-			PreparedStatement preparador = con.prepareStatement(sql);
+		try (PreparedStatement preparador = con.prepareStatement(sql)) {
 
 			preparador.setString(1, usuConsulta.getLogin());
-			preparador.setString(2, usuConsulta.getSenha());
+			preparador.setString(2, usuConsulta.getSenha());	
 			ResultSet resultado = preparador.executeQuery();
-
+			
 			if (resultado.next()) {
 
 				Usuario usuario = new Usuario();
-
 				usuario.setId(resultado.getInt("id"));
 				usuario.setNome(resultado.getString("nome"));
 				usuario.setLogin(resultado.getString("login"));
@@ -197,6 +194,8 @@ public class UsuarioDAO {
 		}
 		return null;
 	}
+	
+	
 
 	public void salvar(Usuario usuario) {
 		// TODO Auto-generated method stub

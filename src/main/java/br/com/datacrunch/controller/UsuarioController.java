@@ -14,6 +14,7 @@ import br.com.datacrunch.entidade.Usuario;
 import br.com.datacrunch.persistencia.jdbc.UsuarioDAO;
 
 
+@WebServlet("/usucontroller.do")
 public class UsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +54,7 @@ public class UsuarioController extends HttpServlet {
 			// falando com o servidor
 			System.out.println("Usuario: " +usu + " foi removido");
 			// falando com o usuario
-			resp.sendRedirect("UsuarioController?acao=lis");
+			resp.sendRedirect("usucontroller.do?acao=lis");
 			
 		//Gaveta listar
 		}else if (acao.equals("lis")){

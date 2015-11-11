@@ -15,7 +15,7 @@ function confirmarExclusao (id){
 	
 	if (window.confirm('Tem certeza que deseja excluir?')){
 		
-		location.href="UsuarioController?acao=exc&id="+id;
+		location.href="usucontroller.do?acao=exc&id="+id;
 	}
 }
 
@@ -91,7 +91,7 @@ function confirmarExclusao (id){
 												<td class="hidden-xs">Blink</td>
 												<td class="center">
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
-													<a href="UsuarioController?acao=alt&id=<%= u.getId() %>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+													<a href="usucontroller.do?acao=alt&id=<%= u.getId() %>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
 													<a href="#" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Share"><i class="fa fa-share"></i></a>
 													<a href="javascript:confirmarExclusao(<%= u.getId() %>)" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
 												</div>
